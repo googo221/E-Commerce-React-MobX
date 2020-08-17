@@ -1,0 +1,24 @@
+.HomePageGrid {
+  font-size: 1rem;
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 20vw auto;
+}
+
+.Container {
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 97%;
+}
+
+.FiltersContainer {
+  position: fixed;
+  height: 100%;
+  top: 3rem;
+  left: 1rem;
+}

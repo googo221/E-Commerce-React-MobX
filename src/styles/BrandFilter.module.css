@@ -1,0 +1,15 @@
+.BrandFilter {
+  width: 11vw;
+  height: 13rem;
+  border: 1px solid rgb(199, 198, 198);
+  color: black;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1rem;
+}
+
+.BrandFilter:last-child {
+  margin-bottom: 2rem;
+}
