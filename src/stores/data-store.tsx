@@ -1,185 +1,115 @@
 import { types, Instance, getEnv } from 'mobx-state-tree';
-import { Phones } from '../models/phone';
-import { Brands } from '../models/brand';
+
 import ApiService from '../apis/api-service';
-import { ApiPhone, ApiBrand, ApiCpu, ApiGpu } from '../types/api';
-import PhoneFilters from '../models/phone_filters';
-import { Cpus } from '../models/cpu';
-import { Gpus } from '../models/gpu';
-import { Orders } from '../models/order';
-import { SelectedPhone } from '../types/common';
+import { Candidates } from '../models/candidate';
+import { ClientTypes } from '../models/client-type';
+import { Positions } from '../models/position';
+import { Experiences } from '../models/experiences';
+import { Regions } from '../models/region';
+import { ManagementTypes } from '../models/management-type';
+import { ProductTypes } from '../models/product-type';
+import { Languages } from '../models/language';
+import {
+  ApiCandidate,
+  ApiClientType,
+  ApiExperience,
+  ApiLanguage,
+  ApiManagementType,
+  ApiPosition,
+  ApiProductType,
+  ApiRegion,
+} from '../types/api';
 
 const DataStore = types
   .model('DataStore', {
-    phones: Phones,
-    brands: Brands,
-    cpus: Cpus,
-    gpus: Gpus,
-    filters: PhoneFilters,
-    orders: Orders,
-    cart: types.array(types.frozen<SelectedPhone>()),
+    candidates: Candidates,
+    experiences: Experiences,
+    desiredPositions: Positions,
+    spokenLanguages: Languages,
+    hiringLocation: Regions,
+    productTypeExps: ProductTypes,
+    clientTypeExps: ClientTypes,
+    managementTypeExps: ManagementTypes,
   })
   .views((self) => ({
     get apiService(): ApiService {
       return getEnv(self).apiService;
     },
-    get priceListing() {
-      const {
-        phones: { phonesListing },
-      } = self;
-
-      return phonesListing.map((phone) => phone.price);
-    },
-    get filteredPhoneList() {
-      const {
-        phones: { phonesListing },
-        filters: { phoneSearchQuery, brandsFilter, priceFilter },
-      } = self;
-
-      return phonesListing
-        .filter((phone) => {
-          return (
-            phone.name.toLowerCase().includes(phoneSearchQuery.toLowerCase()) ||
-            phoneSearchQuery === ''
-          );
-        })
-        .filter(
-          (phone) =>
-            brandsFilter.includes(phone.brand) || brandsFilter.length === 0
-        )
-        .filter(
-          (phone) =>
-            (priceFilter.minPrice && phone.price >= priceFilter.minPrice) ||
-            priceFilter.minPrice === undefined
-        )
-        .filter(
-          (phone) =>
-            (priceFilter.maxPrice && phone.price <= priceFilter.maxPrice) ||
-            priceFilter.maxPrice === undefined
-        );
-    },
-    phoneIndex(phoneId: number) {
-      const { cart } = self;
-
-      return cart.findIndex((existingPhone) => existingPhone.id === phoneId);
-    },
-    phone(phoneId: number) {
-      const {
-        phones: { phones },
-      } = self;
-
-      return phones.get(phoneId.toString())!;
-    },
-    get cartPhoneListing() {
-      const { cart } = self;
-
-      return [...cart.values()];
-    },
-    get cartSum() {
-      const { cart } = self;
-
-      return cart.reduce((sum, phone) => sum + phone.price, 0);
-    },
-    get cartQuantity() {
-      const { cart } = self;
-
-      return cart.reduce((sum, phone) => sum + phone.quantity, 0);
-    },
-  }))
-  .views((self) => ({
-    get minPrice() {
-      const { priceListing } = self;
-
-      return Math.min(...priceListing);
-    },
-    get maxPrice() {
-      const { priceListing } = self;
-
-      return Math.max(...priceListing);
-    },
   }))
   .actions((self) => {
     const {
-      brands: { brands },
-      phones: { phones },
-      gpus: { gpus },
-      cpus: { cpus },
       apiService,
-      phoneIndex,
-      phone,
-      cart,
+      candidates: { candidates },
+      experiences: { experiences },
+      spokenLanguages: { spokenLanguages },
+      hiringLocation: { hiringLocation },
+      desiredPositions: { desiredPositions },
+      clientTypeExps: { clientTypeExps },
+      productTypeExps: { productTypeExps },
+      managementTypeExps: { managementTypeExps },
     } = self;
 
-    const increment = (phoneId: number) => {
-      const existingPhone = cart.find((p) => p.id === phoneId)!;
-      const cartPhone = { ...existingPhone };
-
-      cartPhone.quantity++;
-      cartPhone.price! += phone(phoneId).price;
-      cart[phoneIndex(phoneId)] = cartPhone;
+    const getManagementTypes = () => {
+      const response = apiService.getManagementTypes();
+      response.forEach((managementType: ApiManagementType) =>
+        managementTypeExps.put(managementType)
+      );
     };
 
-    const decrement = (phoneId: number) => {
-      const existingPhone = cart.find((p) => p.id === phoneId)!;
-      const cartPhone = { ...existingPhone };
-
-      if (cartPhone.quantity === 1) {
-        removeFromCart(phoneId);
-      } else {
-        cartPhone.quantity--;
-        cartPhone.price! -= phone(phoneId).price;
-        cart[phoneIndex(phoneId)] = cartPhone;
-      }
+    const getProductTypes = () => {
+      const response = apiService.getProductTypes();
+      response.forEach((productType: ApiProductType) =>
+        productTypeExps.put(productType)
+      );
     };
 
-    const addToCart = (phoneId: number) => {
-      if (phoneIndex(phoneId) > -1) {
-        increment(phoneId);
-      } else {
-        cart.push({ ...self.phone(phoneId) });
-      }
+    const getClientTypes = () => {
+      const response = apiService.getClientTypes();
+      response.forEach((clientType: ApiClientType) =>
+        clientTypeExps.put(clientType)
+      );
     };
 
-    const removeFromCart = (phoneId: number) => {
-      if (self.phone(phoneId)) {
-        return cart.splice(phoneIndex(phoneId), 1);
-      }
+    const getPositions = () => {
+      const response = apiService.getPositions();
+      response.forEach((position: ApiPosition) =>
+        desiredPositions.put(position)
+      );
     };
 
-    const clearCart = () => {
-      return cart.clear();
+    const getRegions = () => {
+      const response = apiService.getRegions();
+      response.forEach((region: ApiRegion) => hiringLocation.put(region));
     };
 
-    const getBrands = () => {
-      const response = apiService.getBrands();
-      response.forEach((brand: ApiBrand) => brands.put(brand));
+    const getLanguages = () => {
+      const response = apiService.getLanguages();
+      response.forEach((language: ApiLanguage) =>
+        spokenLanguages.put(language)
+      );
     };
 
-    const getGpus = () => {
-      const response = apiService.getGpus();
-      response.forEach((gpu: ApiGpu) => gpus.put(gpu));
+    const getExperiences = () => {
+      const response = apiService.getExperiences();
+      response.forEach((experience: ApiExperience) =>
+        experiences.put(experience)
+      );
     };
 
-    const getCpus = () => {
-      const response = apiService.getCpus();
-      response.forEach((cpu: ApiCpu) => cpus.put(cpu));
+    const getCandidates = () => {
+      const response = apiService.getCandidates();
+      response.forEach((candidate: ApiCandidate) => candidates.put(candidate));
     };
 
-    const getPhones = () => {
-      getBrands();
-      const response = apiService.getPhones();
-      response.forEach((phone: ApiPhone) => phones.put(phone));
-    };
     return {
-      getPhones,
-      getBrands,
-      getCpus,
-      getGpus,
-      increment,
-      decrement,
-      addToCart,
-      removeFromCart,
-      clearCart,
+      getCandidates,
+      getExperiences,
+      getLanguages,
+      getRegions,
+      getPositions,
+      getClientTypes,
+      getProductTypes,
+      getManagementTypes,
     };
   });
 

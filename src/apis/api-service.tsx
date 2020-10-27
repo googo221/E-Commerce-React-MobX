@@ -1,234 +1,400 @@
-// import { AxiosInstance } from 'axios';
-
 export class ApiService {
-  constructor() {}
+  // constructor() {}
 
-  getGpus = () => {
+  getManagementTypes = () => {
+    return [{ id: 1, name: 'Permanent contracts' }];
+  };
+
+  getClientTypes = () => {
     return [
-      { id: 1, name: 'Mali-G57 (6-core)' },
-      { id: 2, name: 'Mali-G77 MP11' },
-      { id: 3, name: 'Apple GPU (4-core graphics)' },
-      { id: 4, name: 'PowerVR GE8320' },
-      { id: 5, name: 'Adreno 616' },
-      { id: 6, name: 'Mali-G57 MC5' },
+      { id: 1, name: 'Large groups' },
+      { id: 2, name: 'Individuals' },
+      { id: 3, name: 'Small groups' },
     ];
   };
 
-  getCpus = () => {
+  getProductTypes = () => {
     return [
-      { id: 1, name: 'Octa-core (Cortex-A76 Cortex-A55)', speed: 16.23 },
-      {
-        id: 2,
-        name: 'Octa-core (Mongoose M5 & Cortex-A76 & Cortex-A55)',
-        speed: 18.42,
-      },
-      { id: 3, name: 'Hexa-core (Lightning & Thunder)', speed: 13.15 },
-      {
-        id: 4,
-        name: 'Octa-core (Kryo 475 Prime & Kryo 475 Gold & Kryo 475 Silver)',
-        speed: 14.85,
-      },
-      { id: 5, name: 'Octa-core (Cortex-A76 & Cortex-A55', speed: 18.4 },
-      {
-        id: 6,
-        name: 'Octa-core (Kryo 485 Prime & Kryo 485 Gold & Kryo 485 Silver)',
-        speed: 17.55,
-      },
+      { id: 1, name: 'Saas' },
+      { id: 2, name: 'Service' },
+      { id: 3, name: 'Management' },
+      { id: 4, name: 'Sales' },
     ];
   };
 
-  getBrands = () => {
+  getRegions = () => {
     return [
-      { id: 1, name: 'Huawei' },
-      { id: 2, name: 'Samsung' },
-      { id: 3, name: 'Apple' },
-      { id: 4, name: 'Nokia' },
-      { id: 5, name: 'Xiaomi' },
-      { id: 6, name: 'Lenovo' },
+      { id: 1, region: 'Paris, France' },
+      { id: 2, region: 'Barcelona, Spain' },
+      { id: 3, region: 'Dortmund, Germany' },
+      { id: 4, region: 'Rome, Italy' },
+      { id: 5, region: 'London, United Kingdom' },
     ];
   };
 
-  getPhones = () => {
+  getLanguages = () => {
+    return [
+      { id: 1, language: 'French' },
+      { id: 2, language: 'English' },
+      { id: 3, language: 'German' },
+      { id: 4, language: 'Italian' },
+      { id: 5, language: 'Spanish' },
+    ];
+  };
+
+  getPositions = () => {
+    return [
+      { id: 1, position: 'Account Executive' },
+      { id: 2, position: 'Account Manager' },
+      { id: 3, position: 'BizDev' },
+      { id: 4, position: 'Head of Sales' },
+      { id: 5, position: 'Costumer Success' },
+    ];
+  };
+
+  getExperiences = () => {
     return [
       {
         id: 1,
-        name: 'Huawei P40 lite 5G',
-        price: 400,
-        desc: 'Available. Released 2020, May 28',
-        brand: 1,
-        gpu: 1,
-        cpu: 1,
-        quantity: 1,
+        jobTitle: 'Account executive',
+        companyName: '@ CoorpAcademy',
+        description:
+          'Strong expertise in supporting large accounts (onboarding and monitoring) and in upsell/ cross sell.',
       },
       {
         id: 2,
-        name: 'Huawei P30 Pro New Edition',
-        price: 730,
-        desc: 'Available. Released 2020, June 01',
-        brand: 1,
-        gpu: 1,
-        cpu: 1,
-        quantity: 1,
+        jobTitle: 'Account manager',
+        companyName: '@ Potel et Chabot',
+        description:
+          'Missions of Account Manager and Account Executive, she manages around twenty accounts',
       },
       {
         id: 3,
-        name: 'Huawei P40 Pro+',
-        price: 1800,
-        desc: 'Available. Released 2020, June 06',
-        brand: 1,
-        gpu: 1,
-        cpu: 1,
-        quantity: 1,
+        jobTitle: 'BizDev',
+        companyName: '@ Uber',
+        description:
+          'Sets the objectives for his teams and increases their skills, manages the planning, supervises the results',
       },
       {
         id: 4,
-        name: 'Samsung Galaxy S20 Ultra 5G',
-        price: 1050,
-        desc: 'Available. Released 2020, March 06',
-        brand: 2,
-        gpu: 2,
-        cpu: 2,
-        quantity: 1,
+        jobTitle: 'BizDev',
+        companyName: '@ Papernest',
+        description:
+          'Strong expertise in supporting large accounts (onboarding and monitoring) and in upsell/ cross sell.',
       },
       {
         id: 5,
-        name: 'Samsung Galaxy S20+ 5G',
-        price: 800,
-        desc: 'Available. Released 2020, March 06',
-        brand: 2,
-        gpu: 2,
-        cpu: 2,
-        quantity: 1,
+        jobTitle: 'Head of Sales',
+        companyName: '@ IBM',
+        description:
+          'Sets the objectives for his teams and increases their skills, manages the planning, supervises the results',
       },
       {
         id: 6,
-        name: 'Samsung Galaxy A71',
-        price: 700,
-        desc: 'Coming soon. Exp. release 2020, July 16',
-        brand: 2,
-        gpu: 2,
-        cpu: 2,
-        quantity: 1,
+        jobTitle: 'BizDev',
+        companyName: '@ IBM',
+        description:
+          'Sets the objectives for his teams and increases their skills, manages the planning, supervises the results',
       },
       {
         id: 7,
-        name: 'Apple iPhone 11 Pro Max',
-        price: 1100,
-        desc: '	Available. Released 2019, September 20',
-        brand: 3,
-        gpu: 3,
-        cpu: 3,
-        quantity: 1,
+        jobTitle: 'Costumer success',
+        companyName: '@ Papernest',
+        description:
+          'Strong expertise in supporting large accounts (onboarding and monitoring) and in upsell/ cross sell.',
       },
       {
         id: 8,
-        name: 'Apple iPhone 11 Pro',
-        price: 1000,
-        desc: 'Available. Released 2019, September 20',
-        brand: 3,
-        gpu: 3,
-        cpu: 3,
-        quantity: 1,
+        jobTitle: 'Account manager',
+        companyName: '@ Discngine',
+        description:
+          'Missions of Account Manager and Account Executive, she manages around twenty accounts',
       },
       {
         id: 9,
-        name: 'Apple iPhone 11',
-        price: 800,
-        desc: 'Available. Released 2019, September 20',
-        brand: 3,
-        gpu: 3,
-        cpu: 3,
-        quantity: 1,
+        jobTitle: 'Account executive',
+        companyName: '@ Discngine',
+        description:
+          'Strong expertise in supporting large accounts (onboarding and monitoring) and in upsell/ cross sell.',
       },
       {
         id: 10,
-        name: 'Nokia C5 Endi',
-        price: 200,
-        desc: 'Available. Released 2020, June 05',
-        brand: 4,
-        gpu: 4,
-        cpu: 4,
-        quantity: 1,
+        jobTitle: 'Account manager',
+        companyName: '@ Discngine',
+        description:
+          'Missions of Account Manager and Account Executive, she manages around twenty accounts',
       },
       {
         id: 11,
-        name: 'Nokia 8.3 5G',
-        price: 600,
-        desc: 'Coming soon. Exp. release 2020, July',
-        brand: 4,
-        gpu: 4,
-        cpu: 4,
-        quantity: 1,
+        jobTitle: 'Head of sales',
+        companyName: '@ Discngine',
+        description:
+          'Sets the objectives for his teams and increases their skills, manages the planning, supervises the results',
+      },
+    ];
+  };
+
+  getCandidates = () => {
+    return [
+      {
+        id: 1,
+        contactEmail: 'ninat@gmail.com',
+        firstName: 'Nina',
+        lastName: 'Traverse',
+        profilePicture: '',
+        nbYearExp: 2.5,
+        linkedinUrl: 'linkedin.com/in/ninat/',
+        fixSalary: 45.0,
+        keyExperiences: ['Potel et Chabot', 'Uber', 'Discngine'],
+        accomplishment:
+          'She exceeded her objectives by 50% to finish as top performer for her team with $1.5M in turnover generated on her 15 clients in 2019. Not bad for the youngest of the team, right?',
+        desire:
+          'Nina is looking for a startup/scaleup that has already validated a first product market fit. She would like to retain management and contribute to the commercial start. Is open to any sector',
+        passion:
+          'Passionate about sailing, but do not worry, she will not go to the Vendee Globe if she signs with you ;)',
+        ourThoughts:
+          'A safe bet! Versatile, passionate about his job and not afraid of challenges, he is the perfect person if you want to structure your company.',
+        experiences: [1, 2, 3],
+        desiredPositions: [1, 2, 3],
+        spokenLanguages: [1, 2],
+        hiringLocation: 1,
+        productTypeExps: [1, 2],
+        clientTypeExps: [1, 2],
+        managementTypeExps: 1,
       },
       {
-        id: 12,
-        name: 'Nokia 7.2',
-        price: 600,
-        desc: 'Available. Released 2019, September 23',
-        brand: 4,
-        gpu: 4,
-        cpu: 4,
-        quantity: 1,
+        id: 2,
+        contactEmail: 'adrienm@gmail.com',
+        firstName: 'Adrien',
+        lastName: 'Masson',
+        profilePicture: '',
+        nbYearExp: 2.5,
+        linkedinUrl: 'linkedin.com/in/adrienm/',
+        fixSalary: 45.0,
+        keyExperiences: ['Papernest', 'IBM'],
+        accomplishment:
+          'She exceeded her objectives by 50% to finish as top performer for her team with $1.5M in turnover generated on her 15 clients in 2019. Not bad for the youngest of the team, right?',
+        desire:
+          'Nina is looking for a startup/scaleup that has already validated a first product market fit. She would like to retain management and contribute to the commercial start. Is open to any sector',
+        passion:
+          'Passionate about sailing, but do not worry, she will not go to the Vendee Globe if she signs with you ;)',
+        ourThoughts:
+          'A safe bet! Versatile, passionate about his job and not afraid of challenges, he is the perfect person if you want to structure your company.',
+        experiences: [4, 5],
+        desiredPositions: [3, 4],
+        spokenLanguages: [1],
+        hiringLocation: 4,
+        productTypeExps: [2, 3],
+        clientTypeExps: [2],
+        managementTypeExps: 1,
       },
       {
-        id: 13,
-        name: 'Xiaomi Redmi 10X 5G',
-        price: 300,
-        desc: '	Available. Released 2020, June 01',
-        brand: 5,
-        gpu: 5,
-        cpu: 5,
-        quantity: 1,
+        id: 3,
+        contactEmail: 'julliettem@gmail.com',
+        firstName: 'Julliete',
+        lastName: 'Messeant',
+        profilePicture: '',
+        nbYearExp: 2.5,
+        linkedinUrl: 'linkedin.com/in/jullietem/',
+        fixSalary: 45.0,
+        keyExperiences: ['IBM'],
+        accomplishment:
+          'She exceeded her objectives by 50% to finish as top performer for her team with $1.5M in turnover generated on her 15 clients in 2019. Not bad for the youngest of the team, right?',
+        desire:
+          'Nina is looking for a startup/scaleup that has already validated a first product market fit. She would like to retain management and contribute to the commercial start. Is open to any sector',
+        passion:
+          'Passionate about sailing, but do not worry, she will not go to the Vendee Globe if she signs with you ;)',
+        ourThoughts:
+          'A safe bet! Versatile, passionate about his job and not afraid of challenges, he is the perfect person if you want to structure your company.',
+        experiences: [6, 7],
+        desiredPositions: [3, 5],
+        spokenLanguages: [1, 2, 3],
+        hiringLocation: 3,
+        productTypeExps: [3, 4],
+        clientTypeExps: [1, 2, 3],
+        managementTypeExps: 1,
       },
       {
-        id: 14,
-        name: 'Xiaomi Redmi 10X Pro 5G',
-        price: 400,
-        desc: 'Available. Released 2020, June 06',
-        brand: 5,
-        gpu: 5,
-        cpu: 5,
-        quantity: 1,
+        id: 4,
+        contactEmail: 'alexandrep@gmail.com',
+        firstName: 'Alexandre',
+        lastName: 'Perret',
+        profilePicture: '',
+        nbYearExp: 2.5,
+        linkedinUrl: 'linkedin.com/in/alexandrep/',
+        fixSalary: 45.0,
+        keyExperiences: ['Discngine'],
+        accomplishment:
+          'She exceeded her objectives by 50% to finish as top performer for her team with $1.5M in turnover generated on her 15 clients in 2019. Not bad for the youngest of the team, right?',
+        desire:
+          'Nina is looking for a startup/scaleup that has already validated a first product market fit. She would like to retain management and contribute to the commercial start. Is open to any sector',
+        passion:
+          'Passionate about sailing, but do not worry, she will not go to the Vendee Globe if she signs with you ;)',
+        ourThoughts:
+          'A safe bet! Versatile, passionate about his job and not afraid of challenges, he is the perfect person if you want to structure your company.',
+        experiences: [8],
+        desiredPositions: [2],
+        spokenLanguages: [1, 4, 5],
+        hiringLocation: 2,
+        productTypeExps: [4, 1],
+        clientTypeExps: [1],
+        managementTypeExps: 1,
       },
       {
-        id: 15,
-        name: 'Xiaomi Mi Note 10 Lite',
-        price: 350,
-        desc: 'Available. Released 2020, May 09',
-        brand: 5,
-        gpu: 5,
-        cpu: 5,
-        quantity: 1,
+        id: 5,
+        contactEmail: 'alexanderp@gmail.com',
+        firstName: 'Alexander',
+        lastName: 'Perret',
+        profilePicture: '',
+        nbYearExp: 2.5,
+        linkedinUrl: 'linkedin.com/in/alexanderp/',
+        fixSalary: 45.0,
+        keyExperiences: ['Discngine'],
+        accomplishment:
+          'She exceeded her objectives by 50% to finish as top performer for her team with $1.5M in turnover generated on her 15 clients in 2019. Not bad for the youngest of the team, right?',
+        desire:
+          'Nina is looking for a startup/scaleup that has already validated a first product market fit. She would like to retain management and contribute to the commercial start. Is open to any sector',
+        passion:
+          'Passionate about sailing, but do not worry, she will not go to the Vendee Globe if she signs with you ;)',
+        ourThoughts:
+          'A safe bet! Versatile, passionate about his job and not afraid of challenges, he is the perfect person if you want to structure your company.',
+        experiences: [9, 10, 11],
+        desiredPositions: [1, 2, 5],
+        spokenLanguages: [1, 2, 5],
+        hiringLocation: 5,
+        productTypeExps: [2, 3],
+        clientTypeExps: [1, 3],
+        managementTypeExps: 1,
       },
       {
-        id: 16,
-        name: 'Lenovo Z5s',
-        price: 220,
-        desc: 'Available. Released 2018, December 24',
-        brand: 6,
-        gpu: 6,
-        cpu: 6,
-        quantity: 1,
+        id: 6,
+        contactEmail: 'ninat@gmail.com',
+        firstName: 'Nina',
+        lastName: 'Traverse',
+        profilePicture: '',
+        nbYearExp: 2.5,
+        linkedinUrl: 'linkedin.com/in/ninat/',
+        fixSalary: 45.0,
+        keyExperiences: ['Potel et Chabot', 'Uber', 'Discngine'],
+        accomplishment:
+          'She exceeded her objectives by 50% to finish as top performer for her team with $1.5M in turnover generated on her 15 clients in 2019. Not bad for the youngest of the team, right?',
+        desire:
+          'Nina is looking for a startup/scaleup that has already validated a first product market fit. She would like to retain management and contribute to the commercial start. Is open to any sector',
+        passion:
+          'Passionate about sailing, but do not worry, she will not go to the Vendee Globe if she signs with you ;)',
+        ourThoughts:
+          'A safe bet! Versatile, passionate about his job and not afraid of challenges, he is the perfect person if you want to structure your company.',
+        experiences: [1, 2, 3],
+        desiredPositions: [1, 2, 3],
+        spokenLanguages: [1, 2],
+        hiringLocation: 1,
+        productTypeExps: [1, 2],
+        clientTypeExps: [1, 2],
+        managementTypeExps: 1,
       },
       {
-        id: 17,
-        name: 'Lenovo K10 Plus',
-        price: 350,
-        desc: 'Available. Released 2019, September 30',
-        brand: 6,
-        gpu: 6,
-        cpu: 6,
-        quantity: 1,
+        id: 7,
+        contactEmail: 'adrienm@gmail.com',
+        firstName: 'Adrien',
+        lastName: 'Masson',
+        profilePicture: '',
+        nbYearExp: 2.5,
+        linkedinUrl: 'linkedin.com/in/adrienm/',
+        fixSalary: 45.0,
+        keyExperiences: ['Papernest', 'IBM'],
+        accomplishment:
+          'She exceeded her objectives by 50% to finish as top performer for her team with $1.5M in turnover generated on her 15 clients in 2019. Not bad for the youngest of the team, right?',
+        desire:
+          'Nina is looking for a startup/scaleup that has already validated a first product market fit. She would like to retain management and contribute to the commercial start. Is open to any sector',
+        passion:
+          'Passionate about sailing, but do not worry, she will not go to the Vendee Globe if she signs with you ;)',
+        ourThoughts:
+          'A safe bet! Versatile, passionate about his job and not afraid of challenges, he is the perfect person if you want to structure your company.',
+        experiences: [4, 5],
+        desiredPositions: [3, 4],
+        spokenLanguages: [1],
+        hiringLocation: 4,
+        productTypeExps: [2, 3],
+        clientTypeExps: [2],
+        managementTypeExps: 1,
       },
       {
-        id: 18,
-        name: 'Lenovo Z6 Pro 5G',
-        price: 400,
-        desc: 'Available. Released 2019, November 15',
-        brand: 6,
-        gpu: 6,
-        cpu: 6,
-        quantity: 1,
+        id: 8,
+        contactEmail: 'julliettem@gmail.com',
+        firstName: 'Julliete',
+        lastName: 'Messeant',
+        profilePicture: '',
+        nbYearExp: 2.5,
+        linkedinUrl: 'linkedin.com/in/jullietem/',
+        fixSalary: 45.0,
+        keyExperiences: ['IBM'],
+        accomplishment:
+          'She exceeded her objectives by 50% to finish as top performer for her team with $1.5M in turnover generated on her 15 clients in 2019. Not bad for the youngest of the team, right?',
+        desire:
+          'Nina is looking for a startup/scaleup that has already validated a first product market fit. She would like to retain management and contribute to the commercial start. Is open to any sector',
+        passion:
+          'Passionate about sailing, but do not worry, she will not go to the Vendee Globe if she signs with you ;)',
+        ourThoughts:
+          'A safe bet! Versatile, passionate about his job and not afraid of challenges, he is the perfect person if you want to structure your company.',
+        experiences: [6, 7],
+        desiredPositions: [3, 5],
+        spokenLanguages: [1, 2, 3],
+        hiringLocation: 3,
+        productTypeExps: [3, 4],
+        clientTypeExps: [1, 2, 3],
+        managementTypeExps: 1,
+      },
+      {
+        id: 9,
+        contactEmail: 'alexandrep@gmail.com',
+        firstName: 'Alexandre',
+        lastName: 'Perret',
+        profilePicture: '',
+        nbYearExp: 2.5,
+        linkedinUrl: 'linkedin.com/in/alexandrep/',
+        fixSalary: 45.0,
+        keyExperiences: ['Discngine'],
+        accomplishment:
+          'She exceeded her objectives by 50% to finish as top performer for her team with $1.5M in turnover generated on her 15 clients in 2019. Not bad for the youngest of the team, right?',
+        desire:
+          'Nina is looking for a startup/scaleup that has already validated a first product market fit. She would like to retain management and contribute to the commercial start. Is open to any sector',
+        passion:
+          'Passionate about sailing, but do not worry, she will not go to the Vendee Globe if she signs with you ;)',
+        ourThoughts:
+          'A safe bet! Versatile, passionate about his job and not afraid of challenges, he is the perfect person if you want to structure your company.',
+        experiences: [8],
+        desiredPositions: [2],
+        spokenLanguages: [1, 4, 5],
+        hiringLocation: 2,
+        productTypeExps: [4, 1],
+        clientTypeExps: [1],
+        managementTypeExps: 1,
+      },
+      {
+        id: 10,
+        contactEmail: 'alexanderp@gmail.com',
+        firstName: 'Alexander',
+        lastName: 'Perret',
+        profilePicture: '',
+        nbYearExp: 2.5,
+        linkedinUrl: 'linkedin.com/in/alexanderp/',
+        fixSalary: 45.0,
+        keyExperiences: ['Discngine'],
+        accomplishment:
+          'She exceeded her objectives by 50% to finish as top performer for her team with $1.5M in turnover generated on her 15 clients in 2019. Not bad for the youngest of the team, right?',
+        desire:
+          'Nina is looking for a startup/scaleup that has already validated a first product market fit. She would like to retain management and contribute to the commercial start. Is open to any sector',
+        passion:
+          'Passionate about sailing, but do not worry, she will not go to the Vendee Globe if she signs with you ;)',
+        ourThoughts:
+          'A safe bet! Versatile, passionate about his job and not afraid of challenges, he is the perfect person if you want to structure your company.',
+        experiences: [9, 10, 11],
+        desiredPositions: [1, 2, 5],
+        spokenLanguages: [1, 2, 5],
+        hiringLocation: 5,
+        productTypeExps: [2, 3],
+        clientTypeExps: [1, 3],
+        managementTypeExps: 1,
       },
     ];
   };

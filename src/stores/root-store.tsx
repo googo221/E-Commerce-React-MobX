@@ -6,19 +6,16 @@ import ApiService from '../apis/api-service';
 const apiService = new ApiService();
 const RootStore = types.model('RootStore', {
   dataStore: types.optional(DataStore, {
-    phones: {},
-    brands: {},
-    cpus: {},
-    gpus: {},
-    orders: {},
-    filters: {
-      phoneSearchQuery: '',
-      priceFilter: { minPrice: undefined, maxPrice: undefined },
-    },
+    candidates: {},
+    experiences: {},
+    desiredPositions: {},
+    spokenLanguages: {},
+    hiringLocation: {},
+    productTypeExps: {},
+    clientTypeExps: {},
+    managementTypeExps: {},
   }),
-  uiStore: types.optional(UIStore, {
-    show: false,
-  }),
+  uiStore: types.optional(UIStore, {}),
 });
 
 export default RootStore;
