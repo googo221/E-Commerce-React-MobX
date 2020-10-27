@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import styled from '@material-ui/core/styles/styled';
+import SideDrawer from '../Bars/side-drawer';
 
 const FiltersBox = styled('div')({
   display: 'flex',
@@ -31,6 +32,7 @@ const FiltersContainer = () => {
           ),
         }}
       />
+      <SideDrawer />
     </FiltersBox>
   );
 };

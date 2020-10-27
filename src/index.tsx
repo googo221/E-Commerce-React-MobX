@@ -12,7 +12,7 @@ import { ThemeProvider } from '@material-ui/core';
 import styled from '@material-ui/styles/styled';
 
 import theme from './theme/global';
-import SideBar from './components/side-bar';
+import SideBar from './components/Bars/side-bar';
 import { rootStore } from './stores/root-store';
 import { unregister } from './serviceWorker';
 import './index.css';

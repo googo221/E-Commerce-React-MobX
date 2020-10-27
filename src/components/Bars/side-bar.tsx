@@ -6,8 +6,8 @@ import { Drawer, IconButton, Paper } from '@material-ui/core';
 import WbAutoIcon from '@material-ui/icons/WbAuto';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import { RoutesListing } from '../routes/routes-listing';
-import { themeColors } from '../theme/theme-colors';
+import { RoutesListing } from '../../routes/routes-listing';
+import { themeColors } from '../../theme/theme-colors';
 
 const DrawerContainer = styled(Paper)({
   height: '100vh',
